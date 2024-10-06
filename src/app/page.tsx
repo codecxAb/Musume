@@ -1,101 +1,153 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import Navbar from "@/components/Navbar";
+import { Music, Play, Plus, ThumbsUp, Youtube } from "lucide-react";
 
-export default function Home() {
+export default function LandingPage() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      <Navbar />
+      {/* Animated background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-900 to-black animate-pulse"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDAwMDAwMjAiPjwvcmVjdD4KPHBhdGggZD0iTTAgNUw1IDBaTTYgNEw0IDZaTS0xIDFMMSAtMVoiIHN0cm9rZT0iIzRjMDA4MjEwIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')] opacity-20"></div>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 py-16">
+        <header className="text-center mb-16">
+          <h1 className="text-6xl font-bold mb-4 animate-text bg-gradient-to-r from-violet-500 via-fuchsia-500 to-violet-500 bg-clip-text text-transparent">
+            Musume
+          </h1>
+          <p className="text-xl text-violet-300 animate-fade-in-up">
+            Create and share playlists from YouTube and Spotify
+          </p>
+        </header>
+
+        <main className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <h2 className="text-4xl font-semibold animate-fade-in-left">
+              For Creators
+            </h2>
+            <p className="text-lg text-violet-200 animate-fade-in-left delay-100">
+              Create unique playlists by combining tracks from YouTube and
+              Spotify. Share your curated music experience with your fans.
+            </p>
+            <div className="flex space-x-4 animate-fade-in-left delay-200">
+              <Button className="bg-violet-600 hover:bg-violet-700">
+                <Plus className="mr-2 h-4 w-4" /> Create Playlist
+              </Button>
+              <Button
+                variant="outline"
+                className="text-violet-300 border-violet-600 hover:bg-violet-900/50"
+              >
+                Learn More
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <h2 className="text-4xl font-semibold animate-fade-in-right">
+              For Fans
+            </h2>
+            <p className="text-lg text-violet-200 animate-fade-in-right delay-100">
+              Discover new music, add tracks to playlists, and vote for the next
+              song to play. Engage with your favorite creators' music
+              selections.
+            </p>
+            <div className="animate-fade-in-right delay-200">
+              <Input
+                placeholder="Enter playlist link"
+                className="bg-violet-900/50 border-violet-600 text-white placeholder-violet-300"
+              />
+              <Button className="mt-4 bg-violet-600 hover:bg-violet-700">
+                <Play className="mr-2 h-4 w-4" /> Join Playlist
+              </Button>
+            </div>
+          </div>
+        </main>
+
+        <section className="mt-24 text-center">
+          <h2 className="text-3xl font-semibold mb-8 animate-fade-in-up">
+            How It Works
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Music className="h-12 w-12 mb-4" />,
+                title: "Create",
+                description: "Start a playlist with your favorite tracks",
+              },
+              {
+                icon: <Plus className="h-12 w-12 mb-4" />,
+                title: "Collaborate",
+                description: "Let fans add songs and vote",
+              },
+              {
+                icon: <Play className="h-12 w-12 mb-4" />,
+                title: "Enjoy",
+                description: "Listen together in real-time",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-violet-900/30 p-6 rounded-lg transform transition-all duration-300 hover:scale-105 animate-fade-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {item.icon}
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-violet-300">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <footer className="mt-24 text-center">
+          <p className="text-violet-400">
+            &copy; 2024 Musume. All rights reserved.
+          </p>
+        </footer>
+
+        {/* Floating music note animation */}
+        <div className="fixed bottom-0 left-0 right-0 h-32 pointer-events-none">
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDuration: `${Math.random() * 3 + 2}s`,
+                animationDelay: `${Math.random() * 2}s`,
+              }}
+            >
+              <Music className="text-violet-500 opacity-50" />
+            </div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Interactive playlist button */}
+        <div
+          className="fixed bottom-8 right-8 animate-bounce"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <Button
+            className={`bg-violet-600 hover:bg-violet-700 rounded-full p-4 transition-all duration-300 ${
+              isHovered ? "scale-110" : ""
+            }`}
+          >
+            {isHovered ? (
+              <ThumbsUp className="h-6 w-6" />
+            ) : (
+              <Youtube className="h-6 w-6" />
+            )}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
